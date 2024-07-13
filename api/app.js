@@ -3,7 +3,7 @@ const cors = require('cors')
 const pool = require('pg');  // this is for vercel to work
 
 const routerApi = require('./routes');
-const { errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
+const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 const setupAuthStrategies = require('./utils/auth');
 
 // const https = require('https');
@@ -16,12 +16,13 @@ function createApp() {
 
   setupAuthStrategies();
 
-  app.get('/', (req, res) => {
-    res.send('Hola mi server en express');
+  app.get('/', (request, response) => {
+    response.sendFile(path.join(__dirname, '../index.html'));
   });
 
   routerApi(app);
 
+  app.use(logErrors)
   app.use(ormErrorHandler);
   app.use(boomErrorHandler);
   app.use(errorHandler);
