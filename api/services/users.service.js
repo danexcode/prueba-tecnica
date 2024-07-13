@@ -21,12 +21,19 @@ class UsersServices {
     return response;
   }
 
-  async findOne(id) {
+  async findById(id) {
     const user = await models.User.findByPk(id);
     if(!user){
       throw boom.notFound("user not found");
     }
     return user;
+  }
+
+  async findByUsername(username) {
+    const response = await models.User.findOne({
+      where: { username }
+    });
+    return response;
   }
 
   async update(id, changes) {

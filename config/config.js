@@ -4,6 +4,7 @@ const config = {
   env: process.env.NODE_ENV || "development",
   isProd: process.env.NODE_ENV === "production",
   port: 3000,
+  jwtSecret: process.env.JWT_SECRET,
 
   db: {
     user: process.env.DB_USER,
