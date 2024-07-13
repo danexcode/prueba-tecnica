@@ -4,7 +4,8 @@
   "description": "Prueba tecnica para implementar un login con registro, ademas crear algunos endpoints para manipular la data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon api/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/danexcode/prueba-tecnica/issues"
   },
-  "homepage": "https://github.com/danexcode/prueba-tecnica#readme"
+  "homepage": "https://github.com/danexcode/prueba-tecnica#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3"
+  }
 }
