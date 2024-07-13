@@ -1,0 +1,19 @@
+{
+  "name": "prueba-tecnica",
+  "version": "1.0.0",
+  "description": "Prueba tecnica para implementar un login con registro, ademas crear algunos endpoints para manipular la data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danexcode/prueba-tecnica.git"
+  },
+  "author": "danexcode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danexcode/prueba-tecnica/issues"
+  },
+  "homepage": "https://github.com/danexcode/prueba-tecnica#readme"
+}
