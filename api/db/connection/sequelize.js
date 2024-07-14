@@ -9,7 +9,7 @@ const options = {
 };
 
 if(config.isProd){
-  URI = config.dbUrl;
+  URI = config.db.url;
 
   options.dialectOptions = {
     ssl: {

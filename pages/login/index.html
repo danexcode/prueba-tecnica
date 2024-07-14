@@ -108,7 +108,7 @@
 </body>
 
 <script>
-  URL = "http://localhost:3000"
+  URL = "https://prueba-tecnica-nine-gamma.vercel.app"
   const loginBtn = document.getElementById("login-btn");
   const loginError = document.getElementById("login-error");
   loginBtn.addEventListener("click", async (e) => {
@@ -132,6 +132,7 @@
 
     if (content.user) {
       loginError.classList.add("hidden");
+      localStorage.setItem("user", JSON.stringify(content.user))
       location.href = "/profile";
     } else {
       loginError.classList.remove("hidden");

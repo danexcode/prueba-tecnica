@@ -52,17 +52,6 @@
       background-color: #E8F0FE;
     }
 
-    .profile-container button {
-      color: aliceblue;
-      background-color: cadetblue;
-      border-style: none;
-      cursor: pointer;
-      border-radius: 8px;
-      padding: 16px;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
     .profile-container p {
       font-size: 14px;
       font-weight: lighter;
@@ -73,6 +62,36 @@
     .profile-container p a {
       text-decoration: none;
       color: chocolate;
+    }
+
+    #edit-btn {
+      color: aliceblue;
+      background-color: cadetblue;
+      border-style: none;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    #finish-btn {
+      color: cadetblue;
+      background-color: aliceblue;
+      border: 1px solid cadetblue;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    #success {
+      color: forestgreen;
+    }
+
+    #username-error, #field-error {
+      color: crimson;
     }
 
   </style>
@@ -91,16 +110,103 @@
         <label for="apellido">Apellido</label>
         <input id="apellido" type="text" placeholder="apellido" disabled>
 
+        <p id="username-error" class="hidden">Este usuario ya esta en uso</p>
+
         <label for="username">Usuario</label>
         <input id="username" type="text" placeholder="username" disabled>
 
+        <p id="field-error" class="hidden">Rellene todos los campos</p>
+
+        <p id="success" class="hidden">Informacion actualizada con exito</p>
+
         <button id="edit-btn">Editar perfil</button>
+        <button id="finish-btn" class="hidden">Terminar</button>
       </form>
     </div>
   </main>
 </body>
 
 <script>
+  URL = "https://prueba-tecnica-nine-gamma.vercel.app"
+  const editBtn = document.getElementById("edit-btn");
+  const finishBtn = document.getElementById("finish-btn");
+
+  const name = document.getElementById("nombre");
+  const lastName = document.getElementById("apellido");
+  const username = document.getElementById("username");
+
+  const successMessage = document.getElementById("success");
+  const fieldError = document.getElementById("field-error");
+  const usernameError = document.getElementById("username-error");
+
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+
+  function loadData(user){
+
+    name.placeholder = user.name;
+    lastName.placeholder = user.lastName;
+    username.placeholder = user.username;
+
+    name.value = user.name;
+    lastName.value = user.lastName;
+    username.value = user.username;
+  }
+
+  window.addEventListener("load", async (e) => {
+    loadData(user)
+  })
+
+  editBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    editBtn.classList.toggle("hidden");
+    finishBtn.classList.toggle("hidden");
+    name.disabled = false;
+    lastName.disabled = false;
+    username.disabled = false;
+  });
+
+  finishBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    if (!name.value || !lastName.value || !username.value) {
+      fieldError.classList.remove("hidden");
+      return;
+    }
+
+    const body = {
+      name: name.value,
+      lastName: lastName.value,
+      username: username.value
+    }
+
+    const rawResponse = await fetch(URL + `/api/v1/users/${user.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+    const content = await rawResponse.json();
+
+    if (content.id) {
+      successMessage.classList.remove("hidden");
+      fieldError.classList.add("hidden");
+      usernameError.classList.add("hidden");
+
+      finishBtn.classList.toggle("hidden");
+      editBtn.classList.toggle("hidden");
+
+      name.disabled = true;
+      lastName.disabled = true;
+      username.disabled = true;
+
+      localStorage.setItem("user", JSON.stringify(content))
+      loadData(user)
+    } else {
+      usernameError.classList.remove("hidden");
+    }
+  });
 
 </script>
 
