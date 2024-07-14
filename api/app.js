@@ -7,7 +7,7 @@ const { routerAPI } = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 const setupAuthStrategies = require('./utils/auth');
 
-// const https = require('https');
+const https = require('https');
 
 function createApp() {
   const app = express();
