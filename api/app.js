@@ -18,7 +18,15 @@ function createApp() {
   setupAuthStrategies();
 
   app.get('/', (request, response) => {
-    response.sendFile(path.join(__dirname, '../index.html'));
+    response.sendFile(path.join(__dirname, '../pages/login/index.html'));
+  });
+
+  app.get('/register', (request, response) => {
+    response.sendFile(path.join(__dirname, '../pages/register/index.html'));
+  });
+
+  app.get('/profile', (request, response) => {
+    response.sendFile(path.join(__dirname, '../pages/profile/index.html'));
   });
 
   routerAPI(app);
