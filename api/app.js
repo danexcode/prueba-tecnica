@@ -7,7 +7,7 @@ const { routerAPI } = require('./routes');
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
 const setupAuthStrategies = require('./utils/auth');
 
-const https = require('https');
+const https = require('https'); // this is for vercel to work
 
 function createApp() {
   const app = express();
@@ -31,7 +31,6 @@ function createApp() {
 
   routerAPI(app);
 
-  app.use(logErrors)
   app.use(ormErrorHandler);
   app.use(boomErrorHandler);
   app.use(errorHandler);
