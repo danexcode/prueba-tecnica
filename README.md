@@ -1,4 +1,4 @@
-# Prueba Tecnica
+# Prueba Técnica
 
 ### Instrucciones:
 
@@ -35,14 +35,14 @@ Crear los siguientes endpoints :
 Se usará clean arquitecture, donde se implementaran los modulos a continuacion: 
 - Servicios
 - Rutas
-- Database
+- Database con sequelizeORM 
 - Middlewares
 - Dtos
 - Utils
 
 #### 2. Diseñar la base de datos
 
-En este caso la base de datos solo cuenta con una sola tabla, que es la tabla de usuarios, donde se pide almacenar:
+En este caso la base de datos solo cuenta con una sola tabla, que es la tabla de usuarios, se utilizará un sistema de migraciones con sequelize, se pide almacenar:
 
 - Nombre
 - Apellido
@@ -50,13 +50,35 @@ En este caso la base de datos solo cuenta con una sola tabla, que es la tabla de
 - Email
 - Contraseña
 
-#### 3. Maquetar pagina de Login y Registro y crear sus funciones
+#### 3. Maquetar página de Login y Registro y crear sus funciones
 
-En este paso se creará las rutas, los servicios, los middlewares y los dtos necesarios para que esta seccion funcione, tomando en cuenta los requerimientos.
+En este paso se creará las rutas, los servicios, los middlewares y los dtos necesarios para que esta sección funcione, tomando en cuenta los requerimientos.
 
 #### 4. Crear los endpoints para modificar usuarios
 
-#### 5. Maquetar pagina de informacion de usuario y crear sus funciones
+#### 5. Maquetar pagina de información de usuario y crear sus funciones
 
-Se harán las funciones necesarias para que el usuario logueado pueda actualizar su informacion
+Se harán las funciones necesarias para que el usuario logueado pueda actualizar su información
+
+---
+
+## Requerimientos completados:
+
+- Almacenar informacion del usuario en una base de datos, las contraseñas se guardan encriptadas
+
+- Validar datos al momento de registrar un nuevo usuario (usuario unico, email unico, longitud minimo de la contraseña 8 digitos)
+
+- Función de loguearse por usuario o por email con validaciones
+
+- Opcion para actualizar la informacion del usuario logueado con aviso
+
+- Endpoints para modificar los usuarios creados
+
+- Repositorio en github creado y proyecto servido en vercel
+
+## Deuda técnica asumida:
+
+- Debido a que vercel no esta optimizado para usar archivos simples de html, css y js, tuve problemas para servir los archivos estáticos, y para cumplir con el plazo de entrega decidí hacer todo dentro de los archivos html, por lo que la parte del frontend quedó muy desordenada
+
+- A pesar que implementé una estrategia de jsonwebtoken para hacer login, al final no la use por el tiempo
 
