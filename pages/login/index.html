@@ -97,7 +97,7 @@
         <label for="password">Contraseña</label>
         <input id="password" type="password" placeholder="password">
 
-        <p id="login-error">Usuario o contraseña invalido</p>
+        <p id="login-error" class="hidden">Usuario o contraseña invalido</p>
 
         <button id="login-btn">Entrar</button>
 
@@ -106,4 +106,38 @@
     </div>
   </main>
 </body>
+
+<script>
+  URL = "http://localhost:3000"
+  const loginBtn = document.getElementById("login-btn");
+  const loginError = document.getElementById("login-error");
+  loginBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const userAuth = document.getElementById("userAuth").value;
+    const password = document.getElementById("password").value;
+
+    if (!userAuth || !password){
+      loginError.classList.remove("hidden");
+      return;
+    }
+
+    const rawResponse = await fetch(URL + "/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({userAuth, password})
+    });
+    const content = await rawResponse.json()
+
+    if (content.user) {
+      loginError.classList.add("hidden");
+      location.href = "/profile";
+    } else {
+      loginError.classList.remove("hidden");
+    }
+
+  })
+</script>
+
 </html>
