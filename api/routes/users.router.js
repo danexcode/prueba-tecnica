@@ -5,7 +5,7 @@ const {
   createUserSchema,
   updateUserSchema,
   getUserSchema,
-} = require('../schemas/user.schema');
+} = require('../dtos/user.dto');
 
 const router = express.Router();
 const service = new UsersServices();
@@ -26,7 +26,7 @@ router.get(
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const users = await service.findOne(id);
+      const users = await service.findById(id);
       response.json(users);
     } catch (error) {
       next(error);
@@ -48,7 +48,7 @@ router.post(
   },
 );
 
-router.patch(
+router.put(
   '/:id',
   validatorHandler(getUserSchema, 'params'),
   validatorHandler(updateUserSchema, 'body'),

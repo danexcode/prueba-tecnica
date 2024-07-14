@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const bcrypt = require("bcryptjs");
 const { models } = require("../db/connection/sequelize");
 
 class UsersServices {
@@ -11,6 +12,9 @@ class UsersServices {
 
   async find() {
     const response = await models.User.findAll();
+    response.forEach((user) => {
+      delete user.dataValues.password;
+    });
     return response;
   }
 
@@ -26,6 +30,7 @@ class UsersServices {
     if(!user){
       throw boom.notFound("user not found");
     }
+    // delete user.dataValues.password; Esta linea rompe el codigo
     return user;
   }
 
@@ -37,13 +42,17 @@ class UsersServices {
   }
 
   async update(id, changes) {
-    const user = await this.findOne(id);
-    const response = await user.update(changes);
-    return response;
+    const user = await this.findById(id);
+    if (changes.password) {
+      changes.password = await bcrypt.hash(changes.password, 10);
+    }
+    const updatedUser = await user.update(changes);
+    delete updatedUser.dataValues.password;
+    return updatedUser;
   }
 
   async delete(id) {
-    const user = await this.findOne(id);
+    const user = await this.findById(id);
     await user.destroy();
     return { id };
   }

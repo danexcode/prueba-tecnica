@@ -36,6 +36,7 @@ const UserSchema = {
 }
 
 class User extends Model {
+  static associate(models) {}
 
   static config(sequelize){
     return {

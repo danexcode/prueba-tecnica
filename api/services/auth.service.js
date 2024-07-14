@@ -9,8 +9,8 @@ const service = new UserService();
 
 class AuthService {
   async getUser(userAuth, password) {
-    isEmail = checkEmail(userAuth)
-    const user = undefined;
+    let isEmail = checkEmail(userAuth)
+    let user = undefined;
     if (isEmail) {
       user = await service.findByEmail(userAuth);
       if (!user) {
