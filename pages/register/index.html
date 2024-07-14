@@ -160,7 +160,7 @@
     const content = await rawResponse.json()
 
     if (content.id) {
-      location.href = "/profile";
+      location.href = "/";
     } else if (content.statusCode == 400) {
       if (content.message == "\"email\" must be a valid email") {
         emailError.innerText = "Este email no es valido";

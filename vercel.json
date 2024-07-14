@@ -1,0 +1,27 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/",
+      "destination": "/pages/login/index.html"
+    },
+    {
+      "source": "/register",
+      "destination": "/pages/register/index.html"
+    },
+    {
+      "source": "/profile",
+      "destination": "/pages/profile/index.html"
+    }
+  ],
+  "builds": [
+    { "src": "/api/index.js", "use": "@vercel/node" },
+    { "src": "/pages/login/index.html", "use": "@vercel/static" },
+    { "src": "/pages/register/index.html", "use": "@vercel/static" },
+    { "src": "/pages/profile/index.html", "use": "@vercel/static" }
+  ]
+}
+
