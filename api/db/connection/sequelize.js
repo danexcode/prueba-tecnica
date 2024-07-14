@@ -9,6 +9,7 @@ const options = {
 };
 
 if(config.isProd){
+  console.log("Estamos en produccion")
   URI = config.db.url;
 
   options.dialectOptions = {
@@ -17,6 +18,7 @@ if(config.isProd){
     }
   }
 } else {
+  console.log("Estamos en develop")
   const USER = encodeURIComponent(config.db.user);
   const PASSWORD = encodeURIComponent(config.db.password);
   URI = `postgres://${USER}:${PASSWORD}@${config.db.host}:${config.db.port}/${config.db.name}`;
