@@ -1,5 +1,17 @@
 # Prueba Técnica
 
+Estimado equipo de Nolatech,
+
+Agradezco sinceramente la oportunidad de participar en el proceso de selección. Estoy emocionado por la posibilidad de formar parte de su equipo.
+
+Quiero aclarar que debido a mis responsabilidades laborales durante el día, pude trabajar en la prueba únicamente en las horas nocturnas. A pesar de las limitaciones de tiempo, he puesto mi mejor esfuerzo para demostrar mis habilidades y conocimientos en el área.
+
+Durante este tiempo de evaluación, he puesto mi mayor esfuerzo y dedicación en la prueba técnica. Espero con ansias su respuesta y estoy seguro de que podré contribuir positivamente a Nolatech.
+
+Gracias nuevamente por considerarme y por su tiempo.
+
+Atentamente, Daniel Rodríguez
+
 ### Instrucciones:
 
 Desarrollar un registro de usuario y login básico en NodeJS, el diseño no es de mucha importancia, algo sencillo. Cuando el usuario inicie sesión tendrá una opción para modificar su información. La información a almacenar será la siguiente:
